@@ -1,0 +1,7 @@
+.card {
+  margin-right: 15px;
+  max-width: 222px;
+  width: 222px;
+  min-height: 310px;
+  display: inline-block;
+}
