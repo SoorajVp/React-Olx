@@ -43,24 +43,17 @@ function Posts() {
 
   useEffect(()=> {
     if(searchValue) {
+
       const SearchItems = products.filter((product) => {
         return product.name.toLowerCase().includes(searchValue.toLowerCase()) || product.category.toLowerCase().includes(searchValue.toLowerCase())
       })
+
       setFilteredData(SearchItems)
     }else {
-      console.log("else")
+      
       setFilteredData(products)
     }
   }, [searchValue])
-
-  // if( searchValue && filteredData.length == 0) {
-  //   return (
-  //     <div className='cards'>
-  //       <h2>No Search results</h2>
-  //     </div>
-  //   )
-  // }
-
 
   return (
     <div className="postParentDiv">
@@ -84,6 +77,8 @@ function Posts() {
               className="card"
               onClick={() => {
                 setPostDetails(item);
+                localStorage.setItem('productDetails', JSON.stringify(item))
+                console.log("This is local storage .....", JSON.parse(localStorage.getItem('productDetails')));
                 navigate('/view');
               }}
             >
@@ -109,29 +104,7 @@ function Posts() {
 
         </div>
       </div>
-      {/* <div className="recommendations">
-        <div className="heading">
-          <span>Fresh recommendations</span>
-        </div>
-        <div className="cards">
-          <div className="card">
-            <div className="favorite">
-              <Heart></Heart>
-            </div>
-            <div className="image">
-              <img src="../../../Images/R15V3.jpg" alt="" />
-            </div>
-            <div className="content">
-              <p className="rate">&#x20B9; 250000</p>
-              <span className="kilometer">Two Wheeler</span>
-              <p className="name"> YAMAHA R15V3</p>
-            </div>
-            <div className="date">
-              <span>10/5/2021</span>
-            </div>
-          </div>
-        </div>
-      </div> */}
+      
     </div>
   );
 }

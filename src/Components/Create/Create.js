@@ -9,23 +9,22 @@ import { Firebase } from '../../Firebase/Config';
 import { AuthContext } from '../../Store/Context';
 
 
-
-
 const Create = () => {
+
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext)
 
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState(null);
   const [error, setError] = useState(null)
+  
   const date = new Date();
 
   const db = getFirestore(Firebase)
 
-  const { setUser } = useContext(AuthContext)
-  // const { Firebase } = useContext(FirebaseContext)
 
   useEffect(() => {
     const auth = getAuth();
@@ -76,8 +75,6 @@ const Create = () => {
 
   }
 
-
-
   return (
     <Fragment>
       <Header />
@@ -117,7 +114,7 @@ const Create = () => {
           <input type="file" onChange={(e) => setImage(e.target.files[0])} />
           <br />
           { error && <p className='error'>{error}</p> }
-          
+
           <button className="uploadBtn" onClick={handleSubmit}>upload and Submit</button>
         </div>
       </card>

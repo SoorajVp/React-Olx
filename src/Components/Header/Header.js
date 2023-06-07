@@ -15,7 +15,7 @@ import './Header.css';
 
 function Header() {
 
-  const { searchValue, setSearchValue } = useContext(SearchContext)
+  const { setSearchValue } = useContext(SearchContext)
   const { user, setUser } = useContext(AuthContext)
   const navigate = useNavigate();
   console.log(" This is user console ...",user);
@@ -36,7 +36,9 @@ function Header() {
         </div>
         <div className="placeSearch">
           <Search></Search>
+
           <input type="text" onChange={(e)=> setSearchValue(e.target.value)} onBlur={()=>setSearchValue('')} />
+          
           <Arrow></Arrow>
         </div>
         <div className="productSearch">

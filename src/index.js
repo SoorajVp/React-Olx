@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from './App';
-import { RouterProvider } from 'react-router-dom';
-import { AppRouter } from './App';
+import App from './App';
+// import { RouterProvider } from 'react-router-dom';
+// import { AppRouter } from './App';
 import { FirebaseContext } from './Store/Context';
 import { Firebase } from './Firebase/Config';
 import Context from './Store/Context';
@@ -15,7 +15,8 @@ ReactDOM.render(
         <Post>
             <Context>
                 <SearchItems>
-                <RouterProvider router={AppRouter} />
+                {/* <RouterProvider router={AppRouter} /> */}
+                <App />
                 </SearchItems>
             </Context>
         </Post>

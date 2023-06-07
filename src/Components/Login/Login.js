@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-// import { getDoc, doc, getFirestore } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-// import { Firebase } from '../../Firebase/Config';
 import Logo from '../../olx-logo.png';
 import './Login.css';
 
@@ -27,16 +25,8 @@ function Login() {
         // Signed in 
         const user = userCredential.user;
         console.log("logged in Successfully ...", user.uid);
-        // getDoc(doc(db, "users", user?.uid)).then((docSnap) => {
-        //   if (docSnap.exists()) {
-        //     console.log("Document data:", docSnap.data());
-        //   } else {
-            // docSnap.data() will be undefined in this case
-        //     console.log("No such document!");
-        //   }
-        // })
+        
         navigate('/')
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;

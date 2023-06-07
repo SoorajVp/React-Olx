@@ -1,17 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react';
 
 import './View.css';
-import { PostContext } from '../../Store/PostContext';
+// import { PostContext } from '../../Store/PostContext';
 import { FirebaseContext } from '../../Store/Context';
 import { collection, query, where, getDocs, getFirestore } from 'firebase/firestore';
-// import { Firebase } from '../../Firebase/Config';
 
 
 function View() {
 
-  const [ userDetails, setUserDetails] = useState([]);
-  const { postDetails } = useContext(PostContext);
+  const [userDetails, setUserDetails] = useState([]);
+  // const { postDetails } = useContext(PostContext);
   const { Firebase } = useContext(FirebaseContext);
+
+  const postDetails = JSON.parse(localStorage.getItem('productDetails'))
 
   useEffect(() => {
 
@@ -30,32 +31,35 @@ function View() {
       });
   }, [])
 
-  if( postDetails?.length === 0 ) {
+  if (postDetails?.length === 0) {
     return <h2>Loading ...</h2>
   }
 
   return (
-    <div className="viewParentDiv">
-      <div className="imageShowDiv">
-        <img
-          src={postDetails?.imageUrl}
-          alt=""
-        />
-      </div>
-      <div className="rightSection">
-        <div className="productDetails">
-          <p>&#x20B9; {postDetails?.price} </p>
-          <h5>{postDetails?.name} </h5>
-          <p>{postDetails?.category}</p>
-          <h7>{postDetails?.createdOn}</h7>
+    <>
+      <div className="viewParentDiv">
+        <div className="imageShowDiv">
+          <img
+            src={postDetails?.imageUrl}
+            alt=""
+          />
         </div>
-        <div className="contactDetails">
-          <p>Seller details</p>
-          <p>{userDetails?.name}</p>
-          <p>{userDetails?.mobile}</p>
+        <div className="rightSection">
+          <div className="productDetails">
+            <p>&#x20B9; {postDetails?.price} </p>
+            <h5>{postDetails?.name} </h5>
+            <p>{postDetails?.category}</p>
+            <h7>{postDetails?.createdOn}</h7>
+          </div>
+          <div className="contactDetails">
+            <p>Seller details</p>
+            <p>{userDetails?.name}</p>
+            <p>{userDetails?.mobile}</p>
+          </div>
         </div>
       </div>
-    </div>
+      <hr />
+    </>
   );
 }
 export default View;

@@ -5,7 +5,6 @@ import './Signup.css';
 import { FirebaseContext } from '../../Store/Context';
 import { getFirestore, collection, addDoc } from 'firebase/firestore/lite';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-// import { Firebase } from '../../Firebase/Config';
 
 
 
@@ -30,7 +29,7 @@ export default function Signup() {
       createUserWithEmailAndPassword( auth, Email, Password )
         .then((userCredential) => {
           // Signed in 
-          
+
           const user = userCredential.user;
           updateProfile(auth.currentUser, {
            displayName: Username
@@ -47,7 +46,6 @@ export default function Signup() {
         })
         .catch((error) => {
           const errorCode = error.code;
-          const errorMessage = error.message;
           setError(errorCode)
           console.log(errorCode)
           // ..
