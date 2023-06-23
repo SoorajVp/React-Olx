@@ -5,17 +5,12 @@ import Logo from '../../olx-logo.png';
 import './Login.css';
 
 
-
-
 function Login() {
-  // const db = getFirestore(Firebase)
+
   const navigate = useNavigate();
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
-
   const [ error, setError ] = useState(null);
-
-
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -23,9 +18,6 @@ function Login() {
     signInWithEmailAndPassword(auth, Email, Password)
       .then((userCredential) => {
         // Signed in 
-        const user = userCredential.user;
-        console.log("logged in Successfully ...", user.uid);
-        
         navigate('/')
       })
       .catch((error) => {
@@ -39,7 +31,7 @@ function Login() {
   return (
     <div>
       <div className="loginParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
+        <img width="200px" height="200px" src={Logo}alt='img' ></img>
 
         <form onSubmit={submitHandler}>
           <label htmlFor="fname" className='label'>Email</label>
@@ -70,7 +62,7 @@ function Login() {
           <button>Login</button>
         </form>
 
-        <a>Signup</a>
+        <p onClick={() => navigate('/signup') }>Signup</p>
       </div>
     </div>
   );

@@ -21,10 +21,10 @@ function App() {
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (userDetails) => {
+
       if (userDetails) {
         setUser(userDetails)
         console.log(userDetails)
-
       } else {
         console.log(" No User ...")
       }

@@ -31,26 +31,19 @@ const Create = () => {
     onAuthStateChanged(auth, (userDetails) => {
       if (userDetails) {
         setUser(userDetails)
-        console.log(userDetails)
-
       } else {
         console.log(" No User ...")
       }
     });
-
   }, [])
 
   const handleSubmit = () => {
     if (name && category && price && image) {
       const storage = getStorage();
       const storageRef = ref(storage, `images/${image.name}`);
-
+      // Product creating
       uploadBytes(storageRef, image).then((snapshot) => {
-        console.log('Uploaded a blob or file!', snapshot);
-
         getDownloadURL(storageRef).then((url) => {
-          console.log('File download URL:', url);
-
           addDoc(collection(db, "products"), {
             name,
             category,

@@ -11,14 +11,14 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase
 
 export default function Signup() {
 
-  const { Firebase } = useContext(FirebaseContext);
   const navigate = useNavigate();
+
+  const { Firebase } = useContext(FirebaseContext);
   const db = getFirestore(Firebase)
   const [Username, setUsername] = useState();
   const [Email, setEmail] = useState();
   const [Mobile, setMobile] = useState();
   const [Password, setPassword] = useState();
-
   const [ error, setError ] = useState(null);
 
   const submitHandler = (e) => {
@@ -29,7 +29,6 @@ export default function Signup() {
       createUserWithEmailAndPassword( auth, Email, Password )
         .then((userCredential) => {
           // Signed in 
-
           const user = userCredential.user;
           updateProfile(auth.currentUser, {
            displayName: Username
@@ -54,8 +53,6 @@ export default function Signup() {
       setError(" Fill all the fields required")
     }
 
-   
-  
   }
 
 
@@ -63,7 +60,7 @@ export default function Signup() {
     <div>
       <div className="signupParentDiv">
 
-        <img width="200px" height="180px" src={Logo}></img>
+        <img width="200px" height="180px" src={Logo} alt='img'></img>
 
         <form onSubmit={submitHandler}>
           <label htmlFor="fname" className='label'>Username</label>
@@ -116,7 +113,8 @@ export default function Signup() {
           <button>Signup</button><br/>
           
         </form>
-        <a href='/login'>Login</a>
+        <p onClick={() => navigate('/login') }>Login</p>
+        {/* <a href='/login'>Login</a> */}
       </div>
     </div>
   );
